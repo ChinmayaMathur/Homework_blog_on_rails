@@ -1,0 +1,42 @@
+<br>
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<p>Posted <%= distance_of_time_in_words(@post.created_at, Time.now + 1.minutes) %> ago</p>
+
+<%= link_to "Edit", edit_post_path(@post) %>
+<%= button_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+
+<br>
+<h3> Comment </h3>
+<%= form_with(model:[@post, @comment], local:true) do |f| %>
+      <% if @comment.errors.full_messages.each do |msg| %>
+            <ul>
+                  <li> <%= msg %> </li>
+            <ul>
+      <% end %>
+      <% end %>
+      <div>
+      <%= f.text_area(:body, cols: 50, rows: 5, placeholder: "What's on your mind?", class: 'comment-form') %>
+      </div>
+      <%= f.submit "Submit" %>
+<% end %>
+
+<br/>
+<br/>
+
+<% @comments.each do |comment| %>
+      <%= comment.body %>
+      <br/>
+      <p>Commented <%= distance_of_time_in_words(comment.created_at, Time.now + 1.minutes) %> ago </p>
+      <%= button_to(
+                  "Delete",
+                  post_comment_path(@post, comment),
+                  method: :delete,
+                  data: {
+                         confirm: "Are you sure?"
+                  }, 
+                  class: "some-css-class")
+       %>
+      <hr/>
+<% end %>
+            

@@ -1,0 +1,18 @@
+<%= form_for @post do |f| %>
+      <% if @post.errors.present? %>
+        <p><%= @post.errors.full_messages.join(', ') %></p>
+    <% end %>
+      <div>
+      <b><%= f.label :title %></b>
+      <br>
+      <%= f.text_field :title %>
+      </div>
+      <br>
+      <div>
+      <b><%= f.label :body %></b>
+      <br>
+      <%= f.text_field :body %>
+      </div>
+      <br>
+      <%= f.submit %>
+<% end %>

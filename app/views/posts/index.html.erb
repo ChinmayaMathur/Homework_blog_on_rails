@@ -1,0 +1,10 @@
+<br/>
+<section  class="cards">
+<% @posts.each do |post| %>
+      <div class= card>
+      <h3><%= link_to post.title, post_path(post) %></h3>
+      <h4><%= post.body %></h4>
+      </div>
+      <br>
+<% end %>
+</section>

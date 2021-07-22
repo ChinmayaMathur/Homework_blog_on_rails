@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogOnRails</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <nav class="tab">
+    <h5>
+    <b>Blog On Rails</b>
+    
+    <%= link_to 'Home', posts_path %>
+    |
+    <%= link_to 'New Post', new_post_path %>
+    </h5>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
