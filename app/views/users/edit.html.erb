@@ -1,0 +1,23 @@
+<h1>Edit User</h1>
+<%= form_with model:@user, local: true do |f| %>
+<div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+</div>
+<br/>
+<div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+</div>
+<br/>
+<div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+</div>
+<br/>
+<div>
+      <%= link_to 'Change Password', change_password_path %>
+</div>
+<br/>
+<%= f.submit "Edit User" %>
+<% end %>

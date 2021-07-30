@@ -1,10 +1,18 @@
 <br>
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
+<div>
+      created_by: <%= @post.user&.full_name || "Deleted" %>
+</div>
 <p>Posted <%= distance_of_time_in_words(@post.created_at, Time.now + 1.minutes) %> ago</p>
 
-<%= link_to "Edit", edit_post_path(@post) %>
-<%= button_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+<% if can? :crud, @post %>
+      <%= link_to "Edit", edit_post_path(@post) %>
+<% end %>
+
+<% if can? :crud, @post %>
+      <%= button_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
 
 <br>
 <h3> Comment </h3>
@@ -27,16 +35,23 @@
 <% @comments.each do |comment| %>
       <%= comment.body %>
       <br/>
+      <div>
+            Commented by:
+            <%= comment.user&.full_name || "Deleted" %>
+      </div>
       <p>Commented <%= distance_of_time_in_words(comment.created_at, Time.now + 1.minutes) %> ago </p>
-      <%= button_to(
-                  "Delete",
-                  post_comment_path(@post, comment),
-                  method: :delete,
-                  data: {
-                         confirm: "Are you sure?"
-                  }, 
-                  class: "some-css-class")
-       %>
+
+      <% if can? :crud, comment %>
+            <%= button_to(
+                        "Delete",
+                        post_comment_path(@post, comment),
+                        method: :delete,
+                        data: {
+                              confirm: "Are you sure?"
+                        }, 
+                        class: "some-css-class")
+            %>
+      <% end %>
       <hr/>
 <% end %>
             

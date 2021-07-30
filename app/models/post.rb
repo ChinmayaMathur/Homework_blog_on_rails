@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
       #---------------------CALLBACKS----------------------------------->
-      # before_save :capitalize_title
+      before_save :capitalize_title
       has_many :comments, dependent: :destroy
+      belongs_to :user, optional: true
 
 
       #--------------------VALIDATIONS------------------------------------>
