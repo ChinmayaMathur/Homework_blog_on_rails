@@ -1,5 +1,6 @@
 class Comment < ApplicationRecord
       #-----------------------------Associations--------------------------------------------------->
+      belongs_to :user, optional: true
       belongs_to :post
 
        #-----------------------------Validations---------------------------------------------------->

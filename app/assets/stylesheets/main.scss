@@ -1,7 +1,6 @@
 .tab {
-      padding-right: 0;
-      padding-left: 0;
-      text-align: right;
+      display: flex;
+      justify-content: space-between;
       color: blue;
 }
 
